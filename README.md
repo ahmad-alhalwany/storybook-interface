@@ -1,70 +1,221 @@
-# Getting Started with Create React App
+# Storybook Interface
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+[![React](https://img.shields.io/badge/React-18.2-61DAFB?logo=react&logoColor=white)](https://react.dev/)
+[![Storybook](https://img.shields.io/badge/Storybook-6.5-FF4785?logo=storybook&logoColor=white)](https://storybook.js.org/)
+[![Bootstrap](https://img.shields.io/badge/Bootstrap-5.2-7952B3?logo=bootstrap&logoColor=white)](https://getbootstrap.com/)
+[![Webpack](https://img.shields.io/badge/Webpack-5-8DD6F9?logo=webpack&logoColor=black)](https://webpack.js.org/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
-## Available Scripts
+A **component-driven UI library** built with Create React App and Storybook. It showcases reusable marketing and messaging interfaces — product grids, chat panels, and buttons — with **design-spec integration** (Figma and image overlays) so designers and developers stay aligned during development.
 
-In the project directory, you can run:
+> **Note:** The CRA dev server (`npm start`) is a placeholder. The primary workflow is **Storybook** on port `6006`.
 
-### `npm start`
+---
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Overview
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+This project (`frontwork` in `package.json`) is a Storybook-first React workspace for building and documenting UI components in isolation. Each component ships with its own `.stories.js` file, interactive controls, and linked design references via `storybook-addon-designs`.
 
-### `npm test`
+It was used as the foundation for a **custom marketing interface** that enabled 50+ clients to personalize campaigns efficiently — demonstrating component reusability, design handoff, and rapid UI iteration without a full app shell.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+---
 
-### `npm run build`
+## Architecture
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```text
+┌─────────────────────────────────────────────────────────────┐
+│                     Storybook (port 6006)                   │
+│  ┌─────────────┐  ┌─────────────┐  ┌─────────────────────┐  │
+│  │  Bestsellers │  │    Chat     │  │  Example / Button   │  │
+│  │  + Item      │  │  (Reactstrap)│  │  (Figma design link)│  │
+│  └──────┬──────┘  └──────┬──────┘  └──────────┬──────────┘  │
+│         │                │                     │            │
+│         └────────────────┴─────────────────────┘            │
+│                          │                                  │
+│              storybook-addon-designs (withDesign)           │
+│              Cloudinary / Figma design previews             │
+└─────────────────────────────────────────────────────────────┘
+                          │
+              public/assets/images/  (Nike products, chat avatar)
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+| Layer | Technology |
+|-------|------------|
+| UI framework | React 18 |
+| Styling | Bootstrap 5, Reactstrap |
+| Documentation | Storybook 6.5 (Webpack 5 builder) |
+| Design integration | `storybook-addon-designs` |
+| Build tool | Create React App (`react-scripts` 5) |
+| Testing | React Testing Library (CRA default) |
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+---
 
-### `npm run eject`
+## Features
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+- **Isolated component development** — build and preview UI without running a full application
+- **Bestsellers grid** — Nike shoe product cards with image, name, type, and price
+- **Chat panel** — profile header, message bubble, and send button (Reactstrap)
+- **Design-addon integration** — Figma URLs and Cloudinary design screenshots in the Storybook Design tab
+- **Interactive controls** — Storybook Controls for props like button size, label, and colors
+- **CRA preset** — `@storybook/preset-create-react-app` for zero-config compatibility
+- **Static Storybook build** — exportable docs via `build-storybook`
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+---
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## Tech Stack
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+| Category | Tools |
+|----------|-------|
+| Core | React 18, React DOM |
+| Component docs | Storybook 6.5.14 |
+| Storybook addons | Essentials, Links, Interactions, CRA preset |
+| Design handoff | storybook-addon-designs 6.3 |
+| UI | Bootstrap 5, Reactstrap 9 |
+| Bundler | Webpack 5 (Storybook builder) |
+| Scaffolding | Create React App 5 |
 
-## Learn More
+---
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Prerequisites
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- **Node.js** 16+ (18 recommended)
+- **npm** 8+
 
-### Code Splitting
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## How to Run
 
-### Analyzing the Bundle Size
+### 1. Clone the repository
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+```bash
+git clone https://github.com/ahmad-alhalwany/storybook-interface.git
+cd storybook-interface
+```
 
-### Making a Progressive Web App
+### 2. Install dependencies
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+```bash
+npm install
+```
 
-### Advanced Configuration
+> The repo includes `.npmrc` with `legacy-peer-deps=true` to resolve Storybook 6 peer-dependency conflicts. No extra flags needed.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+### 3. Start Storybook (recommended)
 
-### Deployment
+```bash
+npm run storybook
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+Open **http://localhost:6006** in your browser.
 
-### `npm run build` fails to minify
+| Story | Path in sidebar | Description |
+|-------|-----------------|-------------|
+| Bestsellers | `Component / Bestsellers` | Product grid with Nike shoe cards |
+| Chat | `Component / Chat` | Messaging UI with profile and send button |
+| Button | `Example / Button` | Primary, Secondary, Large, Small variants |
+| Introduction | `Example / Introduction` | Storybook getting-started MDX page |
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+### 4. (Optional) Start the CRA dev server
+
+```bash
+npm start
+```
+
+Opens **http://localhost:3000** — shows a placeholder message directing you to use Storybook instead.
+
+### 5. Build static Storybook
+
+```bash
+npm run build-storybook
+```
+
+Output is written to `storybook-static/` — deployable to GitHub Pages, Netlify, or Vercel.
+
+### 6. Run tests
+
+```bash
+npm test
+```
+
+---
+
+## Project Structure
+
+```text
+storybook-interface/
+├── .storybook/
+│   ├── main.js              # Storybook config, addons, Webpack 5 builder
+│   └── preview.js           # Global parameters (actions, controls)
+├── public/
+│   └── assets/images/       # Product and chat images served to Storybook
+├── src/
+│   ├── components/
+│   │   ├── Bestsellers.js           # Product grid container
+│   │   ├── BestsellersItem.js       # Single product card
+│   │   ├── Bestsellers.stories.js   # Story + Cloudinary design preview
+│   │   ├── Chat.js                  # Chat panel component
+│   │   ├── Chat.stories.js          # Story + design preview
+│   │   └── storybook-example/
+│   │       ├── Button.js            # Reusable button with PropTypes
+│   │       ├── Button.stories.js    # Variants + Figma design link
+│   │       └── Introduction.stories.mdx
+│   ├── App.js               # Placeholder — directs to Storybook
+│   └── index.js
+├── .npmrc                   # legacy-peer-deps=true
+├── package.json
+└── README.md
+```
+
+---
+
+## Component Details
+
+### Bestsellers
+
+Renders a responsive grid of `BestsellersItem` cards. Each item displays a product image, name, type, and price. Images are loaded from `public/assets/images/` via Storybook's static file server.
+
+### Chat
+
+A messaging UI with:
+- Profile avatar, name, and profession
+- Message bubble with customizable text
+- Reactstrap `Button` for sending messages
+
+### Button (Example)
+
+Standard Storybook example component with `primary`, `secondary`, `large`, and `small` variants. Links to a **Figma design file** in the Design addon panel.
+
+---
+
+## Troubleshooting
+
+| Issue | Solution |
+|-------|----------|
+| `npm install` peer dependency errors | Ensure `.npmrc` exists with `legacy-peer-deps=true`, then retry |
+| Images not loading in CRA (`npm start`) | Components reference `http://localhost:6006/assets/images/` — use Storybook instead |
+| Storybook port 6006 in use | Kill the existing process or run `npx start-storybook -p 6007 -s public` |
+| Design tab empty | Install `storybook-addon-designs` and verify `withDesign` decorator is on the story |
+| Webpack 5 build warnings | Expected with Storybook 6 + CRA 5; project uses `@storybook/builder-webpack5` |
+
+---
+
+## Related Work
+
+This repository supports the portfolio experience:
+
+> *Custom marketing interface (Aug 2023): React + Storybook UI enabling 50+ clients to personalize campaigns efficiently.*
+
+---
+
+## Author
+
+**Ahmad Alhalwany**
+
+- GitHub: [@ahmad-alhalwany](https://github.com/ahmad-alhalwany)
+- Portfolio: [ahmad-alhalwany.dev](https://ahmad-alhalwany.dev)
+
+---
+
+## License
+
+This project is open source and available under the [MIT License](LICENSE).
